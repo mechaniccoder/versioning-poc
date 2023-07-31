@@ -16,7 +16,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - run: yarn version --patch
+      - run: |
+          git config --global user.email "yuseunghwan94@gmail.com"
+          git config --global user.name "mechaniccoder"
+          yarn version --patch
 
       # - uses: rymndhng/release-on-push-action@master
       #   with:
