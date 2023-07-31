@@ -13,12 +13,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Use Node.js 16 version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: yarn
-
       - run: yarn version --patch
 
       # - uses: rymndhng/release-on-push-action@master
