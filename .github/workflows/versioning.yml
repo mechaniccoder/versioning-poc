@@ -4,7 +4,11 @@ on:
       tags:
         description: "Enter deploying tag"
         required: true
-        type: string
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
   pull_request:
     types:
       - closed
