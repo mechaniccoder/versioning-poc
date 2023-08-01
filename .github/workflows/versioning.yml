@@ -18,8 +18,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - run: The PR was merged!
-
       - run: echo ${{ github.event.pull_request.labels.name }}
 
       # - name: checkout
