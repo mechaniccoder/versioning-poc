@@ -4,6 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "deploy": "node deploy.js"
+    "deploy": "node scripts/deploy.js"
   }
 }
