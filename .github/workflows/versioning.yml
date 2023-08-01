@@ -19,18 +19,19 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - run: echo ${{ github.event }}
-      - run: echo ${{ github.event.pull_request.labels[0].name }}
+      - run: versioning_type=$(echo ${{ github.event.pull_request.labels[0].name }} | cut -d':' -f2)
+      - run: echo $versioning_type
 
       # - name: checkout
       #   uses: actions/checkout@v3
 
-      # - id: version
-      #   run: |
-      #     git config --global user.email "yuseunghwan94@gmail.com"
-      #     git config --global user.name "mechaniccoder"
-      #     yarn version --patch
-      #     git push
-      #     echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+      - id: version
+        run: |
+          git config --global user.email "yuseunghwan94@gmail.com"
+          git config --global user.name "mechaniccoder"
+          yarn version --$(echo $versioning_type)
+          git push
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
 
       # - name: Using new version
       #   run: echo ${{ steps.version.outputs.version }}
