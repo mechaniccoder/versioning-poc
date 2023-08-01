@@ -18,8 +18,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - run: echo ${{ github.event }}
-      - run: versioning_type=$(echo ${{ github.event.pull_request.labels[0].name }} | cut -d':' -f2)
+      - run: versioning_type=$(echo "${{ github.event.pull_request.labels[0].name }}" | cut -d':' -f2)
       - run: echo $versioning_type
 
       # - name: checkout
