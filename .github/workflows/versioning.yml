@@ -1,5 +1,7 @@
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
 
@@ -9,14 +11,19 @@ permissions:
 
 jobs:
   release-on-push:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - run: The PR was merged!
+
+      - run: echo ${{ github.event.pull_request.labels.name }}
+
+      # - name: checkout
+      #   uses: actions/checkout@v3
 
       # - id: version
       #   run: |
@@ -29,10 +36,10 @@ jobs:
       # - name: Using new version
       #   run: echo ${{ steps.version.outputs.version }}
 
-      - id: release
-        uses: rymndhng/release-on-push-action@master
-        with:
-          bump_version_scheme: minor
-          release_body: "When set, adds extra text to body!"
+      # - id: release
+      #   uses: rymndhng/release-on-push-action@master
+      #   with:
+      #     bump_version_scheme: minor
+      #     release_body: "When set, adds extra text to body!"
 
-      - run: echo ${{ steps.release.outputs.body }}
+      # - run: echo ${{ steps.release.outputs.body }}
