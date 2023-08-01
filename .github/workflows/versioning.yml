@@ -23,8 +23,8 @@ jobs:
           versioning_type=$(echo ${{ github.event.pull_request.labels[0].name }} | cut -d':' -f2)
           echo "versioning_type=$versioning_type" >> "$GITHUB_OUTPUT"
       - run: echo ${{ steps.get_version.outputs.versioning_type }}
-      # - name: checkout
-      #   uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
       - id: version
         run: |
