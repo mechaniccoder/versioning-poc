@@ -37,7 +37,10 @@ jobs:
           cache: yarn
 
       - name: Get tags
-        run: yarn deploy
+        run: |
+          git config --global user.email "yuseunghwan94@gmail.com"
+          git config --global user.name "mechaniccoder"
+          yarn deploy
 
       # - id: get_version
       #   run: |
