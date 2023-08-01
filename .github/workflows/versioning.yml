@@ -18,7 +18,8 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - run: echo ${{ github.event.pull_request.labels.name }}
+      - run: echo ${{ github.event }}
+      - run: echo ${{ github.event.pull_request.labels[0].name }}
 
       # - name: checkout
       #   uses: actions/checkout@v3
